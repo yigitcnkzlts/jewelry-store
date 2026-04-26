@@ -6,7 +6,6 @@ import FeaturedProducts from "../components/sections/FeaturedProducts";
 import SignatureCollection from "../components/sections/SignatureCollection";
 import LuxuryBanner from "../components/sections/LuxuryBanner";
 import DesignProcess from "../components/sections/DesignProcess";
-import Testimonials from "../components/sections/Testimonials";
 import WhyChooseUs from "../components/sections/WhyChooseUs";
 import GallerySection from "../components/sections/GallerySection";
 import ContactCTA from "../components/sections/ContactCTA";
@@ -22,7 +21,6 @@ function Home() {
       <SignatureCollection />
       <LuxuryBanner />
       <DesignProcess />
-      <Testimonials />
       <WhyChooseUs />
       <GallerySection />
       <ContactCTA />
