@@ -30,6 +30,7 @@ export function useProductComparison() {
       localStorage.setItem("compareList", JSON.stringify(updated));
       return updated;
     });
+    return true;
   };
 
   const removeFromCompare = (productId) => {

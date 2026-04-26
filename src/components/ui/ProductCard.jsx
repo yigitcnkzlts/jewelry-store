@@ -4,12 +4,14 @@ import ProductDetailModal from "./ProductDetailModal";
 import ProductQuickView from "./ProductQuickView";
 import { useWishlist } from "../../hooks/useWishlist";
 import { useProductComparison } from "../../hooks/useProductComparison";
+import { useToastContext } from "../../context/ToastContext";
 
 function ProductCard({ product }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const { addToCompare, isInCompare } = useProductComparison();
+  const { showToast } = useToastContext();
 
   const inWishlist = isInWishlist(product.id);
   const inCompare = isInCompare(product.id);
@@ -18,14 +20,19 @@ function ProductCard({ product }) {
     e.stopPropagation();
     if (inWishlist) {
       removeFromWishlist(product.id);
+      showToast("Favorilerden kaldırıldı", "info");
     } else {
       addToWishlist(product);
+      showToast("Favorilere eklendi", "success");
     }
   };
 
   const handleCompareToggle = (e) => {
     e.stopPropagation();
-    addToCompare(product);
+    const result = addToCompare(product);
+    if (result !== false) {
+      showToast("Karşılaştırmaya eklendi", "success");
+    }
   };
 
   return (

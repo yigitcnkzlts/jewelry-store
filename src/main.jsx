@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
+import { ToastProvider } from "./context/ToastContext";
 import App from "./App.jsx";
 import "./index.css";
 
@@ -12,7 +13,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         v7_relativeSplatPath: true,
       }}
     >
-      <App />
+      <ToastProvider>
+        <App />
+      </ToastProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
