@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Collections from "./pages/Collections";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/koleksiyonlar" element={<Collections />} />
         <Route path="/hakkimizda" element={<About />} />
         <Route path="/iletisim" element={<Contact />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );
