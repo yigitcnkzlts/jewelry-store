@@ -98,7 +98,7 @@ function HeroSection() {
           <div className="relative overflow-hidden rounded-[3rem] border border-[#d6ad60]/20 bg-gradient-to-br from-[#fffaf3] via-[#f4e6cf] to-[#d0a85d] shadow-[0_35px_100px_rgba(120,82,24,0.16)]">
             <div className="relative aspect-[4/5] min-h-[560px]">
               <img
-                src="/images/publicimagesproductsnecklace.jpg"
+                src="/images/products/necklace.jpg"
                 alt="Auralya premium mücevher koleksiyonu"
                 className="h-full w-full object-cover object-[center_35%]"
                 onError={(e) => {
