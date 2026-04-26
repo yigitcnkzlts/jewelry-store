@@ -1,9 +1,22 @@
 import { useState } from "react";
-import { MessageCircle, ArrowRight } from "lucide-react";
+import { MessageCircle, ArrowRight, Heart } from "lucide-react";
 import ProductDetailModal from "./ProductDetailModal";
+import { useWishlist } from "../../hooks/useWishlist";
 
 function ProductCard({ product }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
+
+  const inWishlist = isInWishlist(product.id);
+
+  const handleWishlistToggle = (e) => {
+    e.stopPropagation();
+    if (inWishlist) {
+      removeFromWishlist(product.id);
+    } else {
+      addToWishlist(product);
+    }
+  };
 
   return (
     <>
@@ -31,6 +44,16 @@ function ProductCard({ product }) {
               </div>
             )}
           </div>
+
+          <button
+            onClick={handleWishlistToggle}
+            className="absolute right-6 top-6 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-[#6f6252] backdrop-blur transition hover:bg-white hover:text-[#b8893b]"
+          >
+            <Heart
+              size={20}
+              className={inWishlist ? "fill-[#b8893b] text-[#b8893b]" : ""}
+            />
+          </button>
         </div>
 
         <div className="p-7">

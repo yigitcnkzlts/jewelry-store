@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Breadcrumb from "../components/ui/Breadcrumb";
 import {
   Clock,
   Mail,
@@ -88,6 +89,12 @@ function Contact() {
       <section className="relative overflow-hidden px-5 pt-32 pb-16 lg:px-8 lg:pt-40">
         <div className="absolute left-0 top-0 h-[420px] w-[420px] rounded-full bg-[#d6ad60]/20 blur-[120px]" />
         <div className="absolute right-0 bottom-0 h-[360px] w-[360px] rounded-full bg-[#ead7b8]/50 blur-[100px]" />
+
+        <div className="relative mx-auto max-w-7xl">
+          <div className="mb-8">
+            <Breadcrumb items={[{ label: "İletişim" }]} />
+          </div>
+        </div>
 
         <div className="relative mx-auto max-w-7xl">
           <div className="max-w-4xl">

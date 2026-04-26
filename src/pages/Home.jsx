@@ -9,12 +9,18 @@ import DesignProcess from "../components/sections/DesignProcess";
 import WhyChooseUs from "../components/sections/WhyChooseUs";
 import GallerySection from "../components/sections/GallerySection";
 import ContactCTA from "../components/sections/ContactCTA";
+import TrustBadges from "../components/ui/TrustBadges";
 
 function Home() {
   return (
     <>
       <AnnouncementBar />
       <HeroSection />
+      <section className="bg-[#fdfbf7] px-5 py-12 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <TrustBadges />
+        </div>
+      </section>
       <StatsSection />
       <CategorySection />
       <FeaturedProducts />

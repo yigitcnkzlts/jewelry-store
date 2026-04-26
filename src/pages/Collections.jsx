@@ -1,6 +1,7 @@
 import { products } from "../data/products";
 import { categories } from "../data/categories";
 import ProductCard from "../components/ui/ProductCard";
+import Breadcrumb from "../components/ui/Breadcrumb";
 import { Search, SlidersHorizontal } from "lucide-react";
 import { useState } from "react";
 
@@ -39,6 +40,10 @@ function Collections() {
   return (
     <section className="min-h-screen bg-gradient-to-b from-[#fdfbf7] to-[#fffaf3] px-5 pt-32 pb-24 lg:px-8">
       <div className="mx-auto max-w-7xl">
+        <div className="mb-8">
+          <Breadcrumb items={[{ label: "Koleksiyonlar" }]} />
+        </div>
+
         <div className="mb-12 text-center">
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.28em] text-[#b8893b]">
             Koleksiyonlar

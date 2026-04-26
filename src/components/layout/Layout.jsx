@@ -3,6 +3,8 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import FloatingWhatsApp from "../ui/FloatingWhatsApp";
 import ScrollToTop from "../ui/ScrollToTop";
+import CookieConsent from "../ui/CookieConsent";
+import LiveChat from "../ui/LiveChat";
 
 function Layout() {
   return (
@@ -14,6 +16,8 @@ function Layout() {
       <Footer />
       <FloatingWhatsApp />
       <ScrollToTop />
+      <CookieConsent />
+      <LiveChat />
     </div>
   );
 }

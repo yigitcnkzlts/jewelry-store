@@ -1,6 +1,17 @@
-import { X, MessageCircle, Gem, Award, Ruler } from "lucide-react";
+import { X, MessageCircle, Gem, Award, Ruler, ZoomIn } from "lucide-react";
+import { useState, useEffect } from "react";
+import { useRecentlyViewed } from "../../hooks/useRecentlyViewed";
 
 function ProductDetailModal({ product, isOpen, onClose }) {
+  const [isZoomed, setIsZoomed] = useState(false);
+  const { addToRecentlyViewed } = useRecentlyViewed();
+
+  useEffect(() => {
+    if (isOpen && product) {
+      addToRecentlyViewed(product);
+    }
+  }, [isOpen, product, addToRecentlyViewed]);
+
   if (!isOpen) return null;
 
   const whatsappMessage = `Merhaba, ${product.name} hakkında bilgi almak istiyorum.`;
@@ -27,15 +38,25 @@ function ProductDetailModal({ product, isOpen, onClose }) {
 
         <div className="grid gap-8 p-6 md:grid-cols-2 md:p-10">
           <div className="relative overflow-hidden rounded-[2rem] border border-[#d6ad60]/20 bg-gradient-to-br from-[#fffaf3] via-[#f4e3c4] to-[#caa66a] shadow-lg">
-            <div className="relative aspect-square">
+            <div className="group relative aspect-square cursor-zoom-in" onClick={() => setIsZoomed(!isZoomed)}>
               <img
                 src={product.image}
                 alt={product.name}
-                className="h-full w-full object-cover"
+                className={`h-full w-full object-cover transition-transform duration-300 ${
+                  isZoomed ? "scale-150" : "scale-100"
+                }`}
                 onError={(e) => {
                   e.currentTarget.style.display = "none";
                 }}
               />
+
+              {!isZoomed && (
+                <div className="absolute inset-0 flex items-center justify-center bg-[#17120c]/0 opacity-0 transition group-hover:bg-[#17120c]/20 group-hover:opacity-100">
+                  <div className="rounded-full bg-white/90 p-3 backdrop-blur">
+                    <ZoomIn size={24} className="text-[#17120c]" />
+                  </div>
+                </div>
+              )}
 
               {product.badge && (
                 <div className="absolute left-4 top-4 rounded-full bg-[#b8893b] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white shadow-lg">

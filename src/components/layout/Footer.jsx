@@ -31,27 +31,46 @@ function Footer() {
               <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#b8893b]">
                 Bülten
               </p>
-              <div className="flex gap-2">
+              <p className="mb-3 text-sm text-[#6f6252]">
+                Yeni koleksiyonlardan haberdar olun
+              </p>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  alert(
+                    "Bu bir demo formdur. Gerçek projede e-posta listesine kayıt yapılabilir."
+                  );
+                }}
+                className="flex gap-2"
+              >
                 <input
                   type="email"
                   placeholder="E-posta adresiniz"
+                  required
                   className="flex-1 rounded-full border border-[#d6ad60]/30 bg-white px-5 py-3 text-sm text-[#17120c] placeholder:text-[#6f6252]/50 focus:border-[#b8893b] focus:outline-none"
                 />
-                <button className="flex h-12 w-12 items-center justify-center rounded-full bg-[#b8893b] text-white transition hover:bg-[#17120c]">
+                <button
+                  type="submit"
+                  className="flex h-12 w-12 items-center justify-center rounded-full bg-[#b8893b] text-white transition hover:bg-[#17120c]"
+                >
                   <Send size={18} />
                 </button>
-              </div>
+              </form>
             </div>
 
             <div className="mt-6 flex gap-3">
               <a
-                href="#"
+                href="https://instagram.com"
+                target="_blank"
+                rel="noreferrer"
                 className="flex h-11 w-11 items-center justify-center rounded-full border border-[#d6ad60]/25 text-[#6f6252] transition hover:border-[#b8893b] hover:bg-[#b8893b]/10 hover:text-[#b8893b]"
               >
                 <Instagram size={19} />
               </a>
               <a
-                href="#"
+                href="https://facebook.com"
+                target="_blank"
+                rel="noreferrer"
                 className="flex h-11 w-11 items-center justify-center rounded-full border border-[#d6ad60]/25 text-[#6f6252] transition hover:border-[#b8893b] hover:bg-[#b8893b]/10 hover:text-[#b8893b]"
               >
                 <Facebook size={19} />
