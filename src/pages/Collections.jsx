@@ -6,11 +6,35 @@ import { useState } from "react";
 
 function Collections() {
   const [selectedCategory, setSelectedCategory] = useState("Tümü");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [priceFilter, setPriceFilter] = useState("Tümü");
 
-  const filteredProducts =
-    selectedCategory === "Tümü"
-      ? products
-      : products.filter((p) => p.category === selectedCategory);
+  const filteredProducts = products.filter((product) => {
+    // Kategori filtresi
+    const categoryMatch =
+      selectedCategory === "Tümü" || product.category === selectedCategory;
+
+    // Arama filtresi
+    const searchMatch =
+      searchQuery === "" ||
+      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.description.toLowerCase().includes(searchQuery.toLowerCase());
+
+    // Fiyat filtresi
+    const price = parseInt(product.price.replace(/[^\d]/g, ""));
+    let priceMatch = true;
+
+    if (priceFilter === "0-20000") {
+      priceMatch = price < 20000;
+    } else if (priceFilter === "20000-40000") {
+      priceMatch = price >= 20000 && price < 40000;
+    } else if (priceFilter === "40000+") {
+      priceMatch = price >= 40000;
+    }
+
+    return categoryMatch && searchMatch && priceMatch;
+  });
 
   return (
     <section className="min-h-screen bg-gradient-to-b from-[#fdfbf7] to-[#fffaf3] px-5 pt-32 pb-24 lg:px-8">
@@ -63,14 +87,22 @@ function Collections() {
               <input
                 type="text"
                 placeholder="Ürün ara..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full rounded-full border border-[#d6ad60]/30 bg-white py-2.5 pl-11 pr-4 text-sm text-[#17120c] placeholder:text-[#6f6252]/50 focus:border-[#b8893b] focus:outline-none"
               />
             </div>
 
-            <button className="flex items-center gap-2 rounded-full border border-[#d6ad60]/30 bg-white px-5 py-2.5 text-sm font-semibold text-[#6f6252] transition hover:border-[#b8893b] hover:text-[#b8893b]">
-              <SlidersHorizontal size={18} />
-              Filtrele
-            </button>
+            <select
+              value={priceFilter}
+              onChange={(e) => setPriceFilter(e.target.value)}
+              className="flex items-center gap-2 rounded-full border border-[#d6ad60]/30 bg-white px-5 py-2.5 text-sm font-semibold text-[#6f6252] transition hover:border-[#b8893b] hover:text-[#b8893b] focus:outline-none"
+            >
+              <option value="Tümü">Tüm Fiyatlar</option>
+              <option value="0-20000">0₺ - 20.000₺</option>
+              <option value="20000-40000">20.000₺ - 40.000₺</option>
+              <option value="40000+">40.000₺+</option>
+            </select>
           </div>
         </div>
 
