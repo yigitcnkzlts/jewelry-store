@@ -1,13 +1,18 @@
 import { useState } from "react";
-import { MessageCircle, ArrowRight, Heart } from "lucide-react";
+import { MessageCircle, ArrowRight, Heart, Eye, GitCompare } from "lucide-react";
 import ProductDetailModal from "./ProductDetailModal";
+import ProductQuickView from "./ProductQuickView";
 import { useWishlist } from "../../hooks/useWishlist";
+import { useProductComparison } from "../../hooks/useProductComparison";
 
 function ProductCard({ product }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
+  const { addToCompare, isInCompare } = useProductComparison();
 
   const inWishlist = isInWishlist(product.id);
+  const inCompare = isInCompare(product.id);
 
   const handleWishlistToggle = (e) => {
     e.stopPropagation();
@@ -16,6 +21,11 @@ function ProductCard({ product }) {
     } else {
       addToWishlist(product);
     }
+  };
+
+  const handleCompareToggle = (e) => {
+    e.stopPropagation();
+    addToCompare(product);
   };
 
   return (
@@ -33,6 +43,14 @@ function ProductCard({ product }) {
 
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
 
+          <button
+            onClick={() => setIsQuickViewOpen(true)}
+            className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-[#17120c] opacity-0 shadow-lg transition group-hover:opacity-100 hover:bg-[#b8893b] hover:text-white"
+          >
+            <Eye size={16} />
+            Hızlı Bak
+          </button>
+
           <div className="absolute left-6 top-6 flex items-center gap-3">
             <div className="rounded-full bg-white/90 px-4 py-2 text-xs font-semibold text-[#8a641f] backdrop-blur">
               {product.category}
@@ -45,15 +63,26 @@ function ProductCard({ product }) {
             )}
           </div>
 
-          <button
-            onClick={handleWishlistToggle}
-            className="absolute right-6 top-6 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-[#6f6252] backdrop-blur transition hover:bg-white hover:text-[#b8893b]"
-          >
-            <Heart
-              size={20}
-              className={inWishlist ? "fill-[#b8893b] text-[#b8893b]" : ""}
-            />
-          </button>
+          <div className="absolute right-6 top-6 flex gap-2">
+            <button
+              onClick={handleCompareToggle}
+              className={`flex h-10 w-10 items-center justify-center rounded-full bg-white/90 backdrop-blur transition hover:bg-white hover:text-[#b8893b] ${
+                inCompare ? "text-[#b8893b]" : "text-[#6f6252]"
+              }`}
+            >
+              <GitCompare size={18} />
+            </button>
+
+            <button
+              onClick={handleWishlistToggle}
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-[#6f6252] backdrop-blur transition hover:bg-white hover:text-[#b8893b]"
+            >
+              <Heart
+                size={20}
+                className={inWishlist ? "fill-[#b8893b] text-[#b8893b]" : ""}
+              />
+            </button>
+          </div>
         </div>
 
         <div className="p-7">
@@ -90,6 +119,16 @@ function ProductCard({ product }) {
           </a>
         </div>
       </article>
+
+      <ProductQuickView
+        product={product}
+        isOpen={isQuickViewOpen}
+        onClose={() => setIsQuickViewOpen(false)}
+        onViewDetails={() => {
+          setIsQuickViewOpen(false);
+          setIsModalOpen(true);
+        }}
+      />
 
       <ProductDetailModal
         product={product}

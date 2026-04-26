@@ -118,11 +118,38 @@ function Collections() {
           ürün gösteriliyor
         </div>
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {filteredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
+        {filteredProducts.length === 0 ? (
+          <div className="flex min-h-[400px] items-center justify-center rounded-[3rem] border border-[#d6ad60]/20 bg-white p-12 text-center">
+            <div>
+              <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-[#f2e4ce] text-[#b8893b]">
+                <Search size={32} />
+              </div>
+              <h3 className="text-2xl font-semibold text-[#17120c]">
+                Ürün Bulunamadı
+              </h3>
+              <p className="mt-3 text-sm text-[#6f6252]">
+                Aradığınız kriterlere uygun ürün bulunamadı. Lütfen farklı
+                filtreler deneyin.
+              </p>
+              <button
+                onClick={() => {
+                  setSelectedCategory("Tümü");
+                  setSearchQuery("");
+                  setPriceFilter("Tümü");
+                }}
+                className="mt-6 rounded-full bg-[#b8893b] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#17120c]"
+              >
+                Filtreleri Temizle
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {filteredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

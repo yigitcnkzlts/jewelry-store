@@ -10,6 +10,8 @@ import WhyChooseUs from "../components/sections/WhyChooseUs";
 import GallerySection from "../components/sections/GallerySection";
 import ContactCTA from "../components/sections/ContactCTA";
 import TrustBadges from "../components/ui/TrustBadges";
+import VideoSection from "../components/sections/VideoSection";
+import RecentlyViewedSection from "../components/sections/RecentlyViewedSection";
 
 function Home() {
   return (
@@ -26,9 +28,11 @@ function Home() {
       <FeaturedProducts />
       <SignatureCollection />
       <LuxuryBanner />
+      <VideoSection />
       <DesignProcess />
       <WhyChooseUs />
       <GallerySection />
+      <RecentlyViewedSection />
       <ContactCTA />
     </>
   );

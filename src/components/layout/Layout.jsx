@@ -5,12 +5,13 @@ import FloatingWhatsApp from "../ui/FloatingWhatsApp";
 import ScrollToTop from "../ui/ScrollToTop";
 import CookieConsent from "../ui/CookieConsent";
 import LiveChat from "../ui/LiveChat";
+import ComparisonFloatingButton from "../ui/ComparisonFloatingButton";
 
 function Layout() {
   return (
     <div className="min-h-screen bg-cream-100 text-dark-900">
       <Navbar />
-      <main>
+      <main className="animate-fade-in">
         <Outlet />
       </main>
       <Footer />
@@ -18,6 +19,7 @@ function Layout() {
       <ScrollToTop />
       <CookieConsent />
       <LiveChat />
+      <ComparisonFloatingButton />
     </div>
   );
 }
