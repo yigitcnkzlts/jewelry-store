@@ -1,6 +1,7 @@
 import { categories } from "../../data/categories";
 import SectionTitle from "../ui/SectionTitle";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function CategorySection() {
   return (
@@ -42,10 +43,13 @@ function CategorySection() {
                     {category.description}
                   </p>
 
-                  <button className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-[#b8893b] transition hover:gap-2">
+                  <Link
+                    to="/koleksiyonlar"
+                    className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-[#b8893b] transition hover:gap-2"
+                  >
                     Keşfet
                     <ArrowRight size={16} />
-                  </button>
+                  </Link>
                 </div>
               </div>
             );

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { Gem, Menu, X } from "lucide-react";
+import { Gem, Menu, X, Heart } from "lucide-react";
+import { useWishlist } from "../../hooks/useWishlist";
 
 const navLinks = [
   { label: "Ana Sayfa", path: "/" },
@@ -11,6 +12,7 @@ const navLinks = [
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { wishlist } = useWishlist();
 
   const linkClass = ({ isActive }) =>
     `text-sm font-medium transition-colors duration-300 ${
@@ -43,7 +45,19 @@ function Navbar() {
           ))}
         </div>
 
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-4 md:flex">
+          <Link
+            to="/favorilerim"
+            className="relative flex h-10 w-10 items-center justify-center rounded-full border border-gold-600/20 text-dark-800 transition hover:border-gold-600 hover:bg-gold-500/10 hover:text-gold-600"
+          >
+            <Heart size={20} />
+            {wishlist.length > 0 && (
+              <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-gold-600 text-[10px] font-bold text-white">
+                {wishlist.length}
+              </span>
+            )}
+          </Link>
+
           <a
             href="https://wa.me/905550000000"
             target="_blank"
@@ -76,6 +90,14 @@ function Navbar() {
                 {item.label}
               </NavLink>
             ))}
+
+            <NavLink
+              to="/favorilerim"
+              onClick={() => setIsOpen(false)}
+              className={linkClass}
+            >
+              Favorilerim {wishlist.length > 0 && `(${wishlist.length})`}
+            </NavLink>
 
             <a
               href="https://wa.me/905550000000"

@@ -105,18 +105,18 @@ function Footer() {
             </h3>
 
             <div className="flex flex-col gap-3 text-sm text-[#6f6252]">
-              <a href="#" className="transition hover:text-[#b8893b]">
+              <Link to="/koleksiyonlar" className="transition hover:text-[#b8893b]">
                 Yüzükler
-              </a>
-              <a href="#" className="transition hover:text-[#b8893b]">
+              </Link>
+              <Link to="/koleksiyonlar" className="transition hover:text-[#b8893b]">
                 Kolyeler
-              </a>
-              <a href="#" className="transition hover:text-[#b8893b]">
+              </Link>
+              <Link to="/koleksiyonlar" className="transition hover:text-[#b8893b]">
                 Küpeler
-              </a>
-              <a href="#" className="transition hover:text-[#b8893b]">
+              </Link>
+              <Link to="/koleksiyonlar" className="transition hover:text-[#b8893b]">
                 Özel Tasarımlar
-              </a>
+              </Link>
             </div>
           </div>
 
